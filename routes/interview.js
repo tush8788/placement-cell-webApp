@@ -1,11 +1,12 @@
 const passport=require('passport');
 const express=require('express');
+const router=express.Router();
 
 const interviewController=require('../controller/interview_controller');
-const router=express.Router();
 
 //company-page
 router.get('/add-company-page',passport.checkAuthentication,interviewController.addCompanyPage);
+
 //create new company
 router.post('/create-company',passport.checkAuthentication,interviewController.createNewCompany);
 
@@ -20,4 +21,5 @@ router.post('/update-interview-status/:id',passport.checkAuthentication,intervie
 
 //delete company
 router.get('/delete-conpany/:id',passport.checkAuthentication,interviewController.deleteCompany)
+
 module.exports=router;

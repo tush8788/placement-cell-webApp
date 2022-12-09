@@ -4,26 +4,27 @@ const CompanyDB=require('../models/Company');
 
 //create new user
 module.exports.createUser=function(req,res){
-    // console.log(req.body);
+    //checking both password match or not
     if(req.body.password != req.body.ConformPassword){
         return res.redirect('back');
     }
-
+    //finding user allready exist in db or not  
     UserDB.findOne({email:req.body.email},function(err,user){
         if(err){
             console.log("error in finding user inside createUser :: ",err);
             return;
         }
+        //if already exist 
         if(user){
             console.log("Email is already exist ..!");
             return res.redirect('/');
         }
+        //if user is not found then create new user
         UserDB.create(req.body,function(err,newUser){
             if(err){
                 console.log("error in creating user inside createUser :: ",err);
                 return;
             }
-            // console.log(newUser);
             return res.redirect('/');
         })
     })
@@ -42,7 +43,7 @@ module.exports.dashboard=function(req,res){
             console.log("error in finding Student inside Dashboard :: ",err);
             return;
         }
-        //finding company
+        //finding all company
         CompanyDB.find({},function(err,allCompany){
             if(err){
                 console.log("error in finding Company inside Dashboard :: ",err);
@@ -59,6 +60,7 @@ module.exports.dashboard=function(req,res){
 }
 //signout
 module.exports.signOut=function(req,res){
+    // logout
     req.logout(function(err){
         if(err){
             console.log(err);

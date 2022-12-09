@@ -1,7 +1,9 @@
 const passport=require('passport');
 const LocalStrategy=require('passport-local').Strategy;
+//importing user db
 const UserDB=require('../models/user');
 
+//authonticate user
 passport.use(new LocalStrategy({usernameField:'email'},function(email,password,done){
 
         //finding user
@@ -15,6 +17,7 @@ passport.use(new LocalStrategy({usernameField:'email'},function(email,password,d
                 console.log("Invild Email or Password ");
                 return done(null,false);
             }
+            //if user is found and password is match  
             return done(null,user);
         })
 }));
@@ -26,6 +29,7 @@ passport.serializeUser(function(user,done){
 
 // deserializeUser
 passport.deserializeUser(function(id,done){
+    //finding user
     UserDB.findById(id,function(err,user){
         if(err){
             console.log("Error in finding user inside deserializeUser passport :: ",err);
