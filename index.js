@@ -7,7 +7,7 @@ const LocalStrategy = require('./config/passport-local-strategy');
 const expressSession = require('express-session');
 const mongoStore = require('connect-mongo');
 
-const port = 8000;
+const port = process.env.PORT || 8000;
 
 const app = express();
 //set ejs
