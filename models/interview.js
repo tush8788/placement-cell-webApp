@@ -3,7 +3,7 @@ const mongoose=require('mongoose');
 const interviewSchema=new mongoose.Schema({
     student:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:'student'
+        ref:'Student'
     },
     company:{
         type:mongoose.Schema.Types.ObjectId,
