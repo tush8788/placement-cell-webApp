@@ -34,3 +34,5 @@ Download the CSV report
 2. then just "npm start"/ if npm start is not work just run this command 'node index.js'
 3.then go localhost:8000
 
+
+##This Application deploy in cyclic this is a url for access-->"https://real-gold-viper-hose.cyclic.app/"
