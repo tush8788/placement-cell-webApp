@@ -2,7 +2,7 @@ const mongoose=require('mongoose');
 
 mongoose.set('strictQuery', true);
 
-mongoose.connect('mongodb://localhost/career-camp-db');
+mongoose.connect(process.env.MONGO_URI||'mongodb://localhost/career-camp-db');
 
 const db=mongoose.connection;
 
