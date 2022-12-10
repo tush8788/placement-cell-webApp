@@ -35,4 +35,3 @@ Download the CSV report
 3.then go localhost:8000
 
 
-##This Application deploy in cyclic this is a url for access-->"https://real-gold-viper-hose.cyclic.app/"
