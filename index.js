@@ -31,7 +31,7 @@ app.use(expressSession({
         maxAge: (10000 * 60 * 100)
     },
     store: mongoStore.create({
-        mongoUrl: 'mongodb://localhost/career-camp-db',
+        mongoUrl: process.env.MONGO_URI||'mongodb://localhost/career-camp-db',
         autoRemove: false
     }, function (err) {
         console.log(err || "connect-mongo setup ok");
