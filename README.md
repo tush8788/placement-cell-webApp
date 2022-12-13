@@ -34,6 +34,8 @@
 4. after download done 
 5. open command prompt and Type 'npm install' for download all dependencies 
 6. then just "npm start"/ if npm start is not work just run this command 'node index.js'
-7.then go localhost:8000
+7. then go localhost:8000
 
 
+## This Site is hosted on cyclic.sh
+1. Access link "https://jolly-lamb-outfit.cyclic.app/"
