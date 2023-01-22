@@ -120,13 +120,14 @@ module.exports.deleteCompany = function (req, res) {
             console.log("error in deleteing company ", err)
             return;
         }
+        req.flash("success","Company delete successfully!");
         //also delete interviews for given company
         InterviewDB.deleteMany({ company: req.params.id }, function (err, interview) {
             if (err) {
                 console.log("error in deleteing interview in deleteCompany :: ", err)
                 return;
             }
-            req.flash("success","Company delete successfully!");
+           
             return res.redirect('/');
         })
     })
