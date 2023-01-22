@@ -6,6 +6,8 @@ const passport = require('passport');
 const LocalStrategy = require('./config/passport-local-strategy');
 const expressSession = require('express-session');
 const mongoStore = require('connect-mongo');
+const flash=require('connect-flash');
+const customMware=require('./config/notification_middelware');
 
 var dotenv = require('dotenv').config();
 
@@ -45,6 +47,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 //set use in locals for views
 app.use(passport.setAuthenticatedUser);
+//for notification
+app.use(flash());
+app.use(customMware.setFlash);
 
 //handling urls 
 app.use('/', require('./routes/index'));

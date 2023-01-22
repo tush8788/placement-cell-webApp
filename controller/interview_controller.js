@@ -22,6 +22,7 @@ module.exports.createNewCompany = function (req, res) {
         }
         //if company allready exist then just return 
         if (company) {
+            req.flash("error","Company is already exist..!");
             console.log("Company is already exist..");
             return res.redirect('back');
         }
@@ -31,6 +32,7 @@ module.exports.createNewCompany = function (req, res) {
                 console.log("Error in creating company :: ", err);
                 return;
             }
+            req.flash("success","Company created successfully..!");
             return res.redirect('back');
         })
     })
@@ -73,6 +75,7 @@ module.exports.assignInterviewToStudent = function (req, res) {
         }
         //if interview already schedule then just return 
         if (inetrviewList) {
+            req.flash("error","This student already schedule Interviw for same comapany..!")
             console.log("Interview is already schedule for this comapany this student...");
             return res.redirect("back");
         }
@@ -87,7 +90,7 @@ module.exports.assignInterviewToStudent = function (req, res) {
                 console.log("Error in finding interview in assignInterviewToStudent in interview_controller :: ", err);
                 return;
             }
-           
+            req.flash("success","Interview schedule successfully..!");
             return res.redirect('back');
         })
 
@@ -104,6 +107,7 @@ module.exports.updateInterviewStatus = function (req, res) {
                 console.log("Error in updating status of interview ..", err);
                 return;
             }
+            req.flash("success","Interview status update successfully..!");
             return res.redirect("back");
         })
 }
@@ -122,6 +126,7 @@ module.exports.deleteCompany = function (req, res) {
                 console.log("error in deleteing interview in deleteCompany :: ", err)
                 return;
             }
+            req.flash("success","Company delete successfully!");
             return res.redirect('/');
         })
     })

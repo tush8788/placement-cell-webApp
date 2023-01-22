@@ -18,6 +18,7 @@ module.exports.createStduent=function(req,res){
         }
         //if student is availabel just return 
         if(student){
+            req.flash("error","Student is Allready Exists..!");
             console.log("Student is Allready Exists..");
             return res.redirect('back');
         }
@@ -27,6 +28,7 @@ module.exports.createStduent=function(req,res){
                 console.log("Error in creating student in side createStudent ",err);
                 return;
             }
+            req.flash("success","Student create successfully..!");
             return res.redirect('back');
         })
 
@@ -43,19 +45,21 @@ module.exports.deleteStduent=function(req,res){
         }
         //if stduent not found just return
         if(!student){
+            req.flash("error","Student Not found..!");
             return res.redirect("back");
         }
         //storing student id 
         let studentId=student.id;
         //delete student 
         student.remove();
+        req.flash("success","Student and associated interview is deleted successfully..!");
         //also delete all interviews for student 
         InterviewDB.deleteMany({student:studentId},function(err,interview){
             if(err){
                 console.log("error in deleteing interview in deleteCompany :: ",err)
                 return;
             }
-            
+           
             return res.redirect('/');
         })
     })
@@ -94,6 +98,7 @@ module.exports.updateStudent=function(req,res){
             console.log("Error in updating  student in side updateStudent :: ",err);
             return;
         }
+        req.flash("success","Student data update successfully..!");
         return res.redirect("back");
     })
 }

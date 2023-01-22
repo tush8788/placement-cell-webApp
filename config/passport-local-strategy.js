@@ -4,7 +4,7 @@ const LocalStrategy=require('passport-local').Strategy;
 const UserDB=require('../models/user');
 
 //authonticate user
-passport.use(new LocalStrategy({usernameField:'email'},function(email,password,done){
+passport.use(new LocalStrategy({usernameField:'email',passReqToCallback:true},function(req,email,password,done){
 
         //finding user
         UserDB.findOne({email:email},function(err,user){
@@ -14,6 +14,7 @@ passport.use(new LocalStrategy({usernameField:'email'},function(email,password,d
             }
             if(!user || user.password != password)
             {
+                req.flash("error","Invild Email or Password");
                 console.log("Invild Email or Password ");
                 return done(null,false);
             }

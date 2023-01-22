@@ -65,6 +65,7 @@ module.exports.downloadCSV = function (req, res) {
             //seting header
             res.setHeader('Content-Disposition', `attachment; filename=studentdata.xlsx`);
             //returning res to user as csv file
+            req.flash("success","Get Report download successfully");
             return workbook.xlsx.write(res).then(() => {
                 res.status(200);
             });
